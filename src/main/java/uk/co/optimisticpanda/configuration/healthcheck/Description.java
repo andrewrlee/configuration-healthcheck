@@ -18,7 +18,7 @@ public class Description {
 
     public Description(Class<? extends Annotation> annotation, String expectedValue, Class<? extends Object> clazz, String methodName, Object result) {
         this.annotation = annotation;
-        this.expectedValue = expectedValue;
+        this.expectedValue = String.valueOf(expectedValue);
         this.methodLocation = clazz.getSimpleName() + "#" + methodName;
         this.result = String.valueOf(result);
     }

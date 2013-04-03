@@ -19,6 +19,7 @@ import uk.co.optimisticpanda.configuration.healthcheck.annotations.ProvideInProd
     ProductionValueTest.class, //
     ProvideInProductionTest.class,
     ConfigurationHealthCheckTest.class,
+    DescriptionTest.class
     })
 public class AllTests {
 

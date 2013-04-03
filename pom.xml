@@ -20,9 +20,9 @@
 	</licenses>
 
 	<scm>
-		<url>scm:git:git@github.com:plasma147/atom-archive-traverser.git</url>
-		<connection>scm:git:git@github.com:plasma147/atom-archive-traverser.git</connection>
-		<developerConnection>scm:git:git@github.com:plasma147/atom-archive-traverser.git</developerConnection>
+		<url>scm:git:git@github.com:plasma147/configuration-healthcheck.git</url>
+		<connection>scm:git:git@github.com:plasma147/configuration-healthcheck.git</connection>
+		<developerConnection>scm:git:git@github.com:plasma147/configuration-healthcheck.git</developerConnection>
 	</scm>
 
 	<profiles>
@@ -91,6 +91,30 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				 <version>0.6.2.201302030002</version>
+				<configuration>
+					<destfile>${basedir}/target/coverage-reports/jacoco-unit.exec</destfile>
+					<datafile>${basedir}/target/coverage-reports/jacoco-unit.exec</datafile>
+				</configuration>
+				<executions>
+					<execution>
+						<id>jacoco-initialize</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-site</id>
+						<phase>package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 
 		<pluginManagement>
@@ -113,6 +137,23 @@
 									</pluginExecutionFilter>
 									<action>
 										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.jacoco</groupId>
+										<artifactId>
+											jacoco-maven-plugin
+										</artifactId>
+										<versionRange>
+											[0.6.2.201302030002,)
+										</versionRange>
+										<goals>
+											<goal>prepare-agent</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
