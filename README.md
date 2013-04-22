@@ -11,7 +11,7 @@ The ConfigurationHealthCheck takes an array of objects that can be passed or inj
 
 If any of these methods return unexpected results then the healthcheck fails and will return detailed information about why this is the case, as displayed below. 
 
-There are 5 provided annotations. These annotations can be specified on any public 0-arg accessor. It also has support for methods returning Guava Optional values.
+There are 5 provided annotations. These annotations can be specified on any public 0-arg accessor. It also has support for static methods and methods returning Guava Optional values.
 
 ```java
     //This method should return a true value  (primitive or boolean). 
@@ -45,7 +45,7 @@ There are 5 provided annotations. These annotations can be specified on any publ
     }
 ```
 
-Given the configuration object as descriped above, the health check invocation would look a bit like this:
+Given the configuration object as described above, the health check invocation would look a bit like this:
 ```
 ! Configuration Error: ERROR
 !  TestHealthCheckInDropwizard#getName            [Expected: <A non-absent value>  , Actual: null      ] [Rule: ProvideInProduction] 
@@ -55,3 +55,10 @@ Given the configuration object as descriped above, the health check invocation w
 !  TestHealthCheckInDropwizard#shouldNoBeProvided [Expected: <null or absent value>, Actual: Some value] [Rule: ExcludeInProduction] 
 * deadlocks: OK
 ```
+
+You can also specify custom annotations and their associated validation rules by creating an instance of a ConfigurationErrorReporter and providing it to the ConfigurationHealthCheck instance. 
+   
+
+
+
+  

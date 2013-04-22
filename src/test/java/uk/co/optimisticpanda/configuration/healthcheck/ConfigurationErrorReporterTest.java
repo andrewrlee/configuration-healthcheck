@@ -7,6 +7,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import uk.co.optimisticpanda.configuration.healthcheck.annotations.DisableInProduction;
+import uk.co.optimisticpanda.configuration.healthcheck.annotations.TestInstances.ChildOfDisabledInProductionObject;
+import uk.co.optimisticpanda.configuration.healthcheck.annotations.TestInstances.ClassWithStaticMethodsObject;
 import uk.co.optimisticpanda.configuration.healthcheck.annotations.TestInstances.HasAnnotationButNotConfigRelatedObject;
 import uk.co.optimisticpanda.configuration.healthcheck.annotations.TestInstances.HasParametersObject;
 import uk.co.optimisticpanda.configuration.healthcheck.annotations.TestInstances.HasVoidReturnObject;
@@ -45,5 +48,21 @@ public class ConfigurationErrorReporterTest {
         reporter.getErrors(annotatedInstance);
     }
     
-    //test inherited methods
+    @Test
+    public void checkConfigurationErrorsRelatedToParentClass() {
+        ChildOfDisabledInProductionObject annotatedInstance = new ChildOfDisabledInProductionObject(true);
+        List<Violation> violations = reporter.getErrors(annotatedInstance);
+        assertThat(violations).hasSize(1);
+        assertThat(violations.get(0).getType()).isEqualTo(DisableInProduction.class);
+    }
+    
+    @Test
+    public void checkStaticMethods() {
+        ClassWithStaticMethodsObject annotatedInstance = new ClassWithStaticMethodsObject();
+        List<Violation> violations = reporter.getErrors(annotatedInstance);
+        assertThat(violations).hasSize(1);
+        assertThat(violations.get(0).getType()).isEqualTo(DisableInProduction.class);
+    }
+
+    //test static methods
 }

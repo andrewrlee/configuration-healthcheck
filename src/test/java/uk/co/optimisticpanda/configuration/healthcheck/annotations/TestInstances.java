@@ -49,6 +49,19 @@ public class TestInstances {
         }
     }
 
+    public static class ChildOfDisabledInProductionObject extends DisabledInProductionObject{
+        public ChildOfDisabledInProductionObject(Object value) {
+            super(value);
+        }
+    }
+    
+    public static class ClassWithStaticMethodsObject {
+        @DisableInProduction
+        public static Object getter() {
+            return true;
+        }
+    }
+
     public static class NotPresentInProductionObject {
         
         private Object value;
@@ -94,6 +107,8 @@ public class TestInstances {
             return value;
         }
     }
+    
+    
     public static class ValueInProductionIntObject{
         private final Object value;
         
