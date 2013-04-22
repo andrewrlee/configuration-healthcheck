@@ -33,7 +33,7 @@ public class TestHealthCheckInDropwizard extends Service<Configuration>{
     }
     
     @DisableInProduction
-    public boolean shouldBeDisabled(){
+    public static boolean shouldBeDisabled(){
         return true;
     }
     
