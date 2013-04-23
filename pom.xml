@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>uk.co.optimisticpanda</groupId>
 	<artifactId>configuration-healthcheck</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4-SNAPSHOT</version>
 
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
