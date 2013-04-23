@@ -6,8 +6,19 @@ This project provides a [Metrics](https://github.com/codahale/metrics) health ch
 It is often common to have different configuration for production and development systems. It maybe that integration with external systems are disabled or that you allow additional hooks to aid automated testing. 
 
 It is vital that this development functionality is not present in production and configuration should generally be managed in a way that this is not possible. Despite best endeavors sometimes mistakes slip through.  
- 
-The ConfigurationHealthCheck takes an array of objects that can be passed or injected into it's constructor. When the health check is checked, the objects are scanned in turn for accessor methods with annotations that specify what state the system should be in production. These methods are then invoked and the result is compared with the expected value as specified by the annotation.     
+
+This project is available from the central maven repository:
+
+```xml
+  <dependency>
+    <groupId>uk.co.optimisticpanda</groupId>
+    <artifactId>configuration-healthcheck</artifactId>
+    <version>0.0.3</version>
+  </dependency>
+```
+
+
+The ConfigurationHealthCheck takes an array of objects that can be passed or injected into it's constructor. When the health check is called, the objects are scanned in turn for accessor methods with annotations that specify what state the system should be in production. These methods are then invoked and the result is compared with the expected value as specified by the annotation.     
 
 If any of these methods return unexpected results then the healthcheck fails and will return detailed information about why this is the case, as displayed below. 
 
